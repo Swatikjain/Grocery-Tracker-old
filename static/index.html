@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f2">
+    <title>Grocery Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Grocery Tracker home">
+        <span class="brand-mark">g</span>
+        <span>grocer<span class="brand-light">y</span></span>
+      </a>
+      <span class="topbar-note">Your pantry, in perspective</span>
+    </header>
+
+    <main>
+      <section id="home-view" class="view">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">A LITTLE MORE CLARITY</p>
+            <h1>Know what’s<br><span>in your basket.</span></h1>
+            <p class="hero-description">Keep the little details from every grocery run, all in one place.</p>
+          </div>
+          <div class="produce-art" aria-hidden="true">
+            <span class="produce-leaf leaf-one"></span>
+            <span class="produce-leaf leaf-two"></span>
+            <span class="produce-berry">•</span>
+            <span class="produce-dot"></span>
+          </div>
+        </div>
+
+        <section class="scan-card">
+          <div class="card-icon" aria-hidden="true">↗</div>
+          <div class="scan-copy">
+            <h2>Start with a receipt</h2>
+            <p>Snap a photo or choose an image. We’ll take it from there.</p>
+          </div>
+          <label class="save-image-setting">
+            <input id="save-image-setting" type="checkbox">
+            <span>Keep receipt image</span>
+          </label>
+          <label class="primary-button scan-button" for="receipt-file">
+            <span>Scan receipt</span><span aria-hidden="true">→</span>
+          </label>
+          <input id="receipt-file" class="visually-hidden" type="file" accept="image/*" capture="environment">
+          <p class="privacy-note">Your photo is only saved with the receipt when you turn on “Keep receipt image”.</p>
+        </section>
+
+        <section class="recent-section">
+          <div class="section-heading">
+            <div><p class="eyebrow">YOUR GROCERY TRAIL</p><h2>Recent receipts</h2></div>
+            <button class="text-button" data-view="history">See all <span aria-hidden="true">→</span></button>
+          </div>
+          <div id="recent-receipts" class="receipt-list"></div>
+        </section>
+      </section>
+
+      <section id="review-view" class="view hidden">
+        <button class="back-button" data-view="home">← <span>Back to home</span></button>
+        <div class="page-heading"><p class="eyebrow">CHECK IT OVER</p><h1>Your receipt</h1><p>Make any changes before saving.</p></div>
+        <div id="date-warning" class="notice warning hidden"></div>
+        <form id="review-form" class="review-card">
+          <div class="form-grid">
+            <label>Store name<input id="store-name" name="store_name" required maxlength="200"></label>
+            <label>Purchase date<input id="purchase-date" name="purchase_date" type="date" required></label>
+          </div>
+          <div class="section-heading item-heading"><h2>Items <span id="item-count"></span></h2><button id="add-item" class="text-button" type="button">+ Add item</button></div>
+          <div class="item-table-head"><span>ITEM</span><span>QTY</span><span>UNIT PRICE</span><span>LINE TOTAL</span><span></span></div>
+          <div id="editable-items"></div>
+          <label class="total-field">Receipt total<input id="receipt-total" name="total_amount" type="number" step="0.01" min="0" required></label>
+          <div class="review-actions"><button type="button" class="secondary-button" data-view="home">Cancel</button><button type="submit" class="primary-button">Save receipt <span aria-hidden="true">→</span></button></div>
+        </form>
+      </section>
+
+      <section id="history-view" class="view hidden">
+        <button class="back-button" data-view="home">← <span>Back to home</span></button>
+        <div class="page-heading"><p class="eyebrow">YOUR GROCERY TRAIL</p><h1>Receipt history</h1><p>Every trip, in one tidy list.</p></div>
+        <div id="history-receipts" class="receipt-list"></div>
+      </section>
+
+      <section id="items-view" class="view hidden">
+        <button class="back-button" data-view="home">← <span>Back to home</span></button>
+        <div class="page-heading"><p class="eyebrow">THE LITTLE DETAILS</p><h1>All your items</h1><p>See what you’ve picked up, and when.</p></div>
+        <section class="spending-card">
+          <div><p class="eyebrow">MONTHLY SPENDING</p><h2 id="monthly-total">$0.00</h2></div>
+          <input id="spending-month" aria-label="Spending month" type="month">
+        </section>
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="item-search" type="search" placeholder="Search items or stores…" autocomplete="off"></label>
+        <div id="all-items" class="all-items"></div>
+      </section>
+
+      <div id="app-message" class="notice hidden" role="status" aria-live="polite"></div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-view="home"><span>⌂</span>Home</button>
+        <button class="nav-link" data-view="history"><span>▤</span>History</button>
+        <button class="nav-link" data-view="items"><span>◷</span>Items</button>
+      </nav>
+    </main>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
